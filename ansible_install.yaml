@@ -1,0 +1,13 @@
+---
+- hosts: server1
+  tasks:
+     - name: Updating ubuntu
+       apt: update_cache=yes
+     - name: Apt Repository install
+       apt: name=software-properties-common state=latest
+     - name: Adding ansible repository
+       command: apt-add-repository ppa:ansible/ansible
+     - name: Updating again
+       apt: update_cache=yes
+     - name: Installing ansible
+       apt: name=ansible state=latest

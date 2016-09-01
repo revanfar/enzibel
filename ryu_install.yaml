@@ -1,0 +1,32 @@
+---
+- hosts: server1
+  tasks:
+     - name: Instaling Packages needed
+       apt: name={{item}} state=latest
+       with_items:
+           - git
+           - python-pip
+           - python-dev
+           - python-eventlet
+           - python-routes
+           - python-webob
+           - python-paramiko
+  tasks:    
+      - name: Clone RYU git repo
+        command: git clone --depth=1 https://github.com/osrg/ryu.git
+        ignore_errors: yes    
+      - name: PIP setuptools upgrade
+        command: pip install setuptools --upgrade
+      - name: Moving to RYU directory
+        shell: chdir /root/ryu
+      - name: Installing ryu
+        command: python /root/ryu/setup.py install
+        ignore_errors: yes
+      - name: Pip six
+        command: pip install six --upgrade
+      - name: Pip oslo
+        command: pip install oslo.config msgpack-python
+      - name: Pip eventlet
+        command: pip install eventlet --upgrade
+      - name: Checking ryu manager
+        command: ryu-manager --version

@@ -1,5 +1,8 @@
 ---
 - hosts: server1
+  remote_user: ubuntu
+  become: true
+  become_method: sudo
   tasks:
      - name: Updating ubuntu
        apt: update_cache=yes

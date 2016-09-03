@@ -1,0 +1,10 @@
+---
+- name: Install Mininet and Ryu Controller
+  hosts: trystack
+  remote_user: ubuntu
+  become: true
+  become_method: sudo
+
+  roles:
+   - mininet
+   - ryu

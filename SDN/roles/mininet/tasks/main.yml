@@ -1,0 +1,20 @@
+---
+   - name: Updating ubuntu
+     apt: update_cache=yes
+   - name: Installing mininet
+     apt: name=mininet state=latest
+   - name: Stopping OVS controller
+     service: name=openvswitch-controller state=stopped
+   - name: Checking mininet
+     command: mn --test pingall
+
+   #- name: Installing Git
+   #  apt: name=git state=latest
+   #- name: Cloning mininet from Github  
+   #  git: repo=git://github.com/mininet/mininet
+   #       dest="{{mininet_dir}}"
+   #      version=2.2.1
+   #       accept_hostkey=yes
+   #- name: Installing mininet
+   #  command: chdir="{{mininet_dir}}"
+   #           util/install.sh -nfv

@@ -1,0 +1,4 @@
+
+---
+- name: restart ovs
+  service: name=openvswitch-controller state=stopped

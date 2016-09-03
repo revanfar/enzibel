@@ -1,23 +1,16 @@
 ---
-- hosts: server1
-  remote_user: ubuntu
-  become: true
-  become_method: sudo
-  vars:
-   install_dest: /home/ubuntu/ryu
-  tasks:
    - name: Installing Packages needed
      apt: name={{item}} state=latest
      with_items:
       - [ 'git', 'python-pip', 'python-dev', 'python-eventlet', 'python-routes', 'python-webob', 'python-paramiko']          
    - name: Clone RYU git repo
      git: repo=git://github.com/osrg/ryu.git
-          dest="{{install_dest}}"   
+          dest="{{ryu_dir}}"   
    - name: PIP setuptools upgrade
      command: pip install setuptools --upgrade
    - name: Installing ryu
-     command: python "{{install_dest}}"/setup.py install
-              chdir="{{install_dest}}"
+     command: python "{{ryu_dir}}"/setup.py install
+              chdir="{{ryu_dir}}" 
    - name: Pip six
      command: pip install six --upgrade
    - name: Pip oslo

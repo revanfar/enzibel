@@ -1,0 +1,3 @@
+---
+mininet_dir: /home/ubuntu/mininet
+ryu_dir: /home/ubuntu/ryu

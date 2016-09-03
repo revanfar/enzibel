@@ -7,7 +7,7 @@ You should edit it and replace with your own name.
 
 To execute these files, just simply type
 
- #ansible-playbook file.yaml
+ #ansible-playbook site.yml
 
 You can use it for fun and free!
 Enjoy
